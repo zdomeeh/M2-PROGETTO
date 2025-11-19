@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -24,4 +22,13 @@ public class Weapon
         this.bonusStats = bonusStats;
     }
 
+    public string GetName() => name;
+    public DAMAGE_TYPE GetDmgType() => dmgType;
+    public ELEMENT GetElement() => elem;
+    public Stats GetBonusStats() => bonusStats;
+
+    public void SetName(string value) => name = value;
+    public void SetdmgType(DAMAGE_TYPE value) => dmgType = value;
+    public void SetElem(ELEMENT value) => elem = value;
+    public void SetBonusStats(Stats value) => bonusStats = value;
 }
