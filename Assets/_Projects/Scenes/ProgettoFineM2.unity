@@ -131,8 +131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212137219}
+  - component: {fileID: 212137220}
   m_Layer: 0
-  m_Name: PJTM2
+  m_Name: PROGETTO FINALE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,6 +154,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &212137220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212137218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e55fefb6945ac4fb2bb3da1c247bf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  a:
+    name: Guerriero
+    hp: 120
+    baseStats:
+      atk: 15
+      def: 10
+      res: 5
+      spd: 7
+      crt: 20
+      aim: 60
+      eva: 15
+    resistance: 0
+    weakness: 0
+    weapon:
+      name: MORTAZZA
+      dmgType: 0
+      elem: 0
+      bonusStats:
+        atk: 5
+        def: 0
+        res: 0
+        spd: 1
+        crt: 5
+        aim: 0
+        eva: 0
+  b:
+    name: Mago
+    hp: 110
+    baseStats:
+      atk: 12
+      def: 6
+      res: 14
+      spd: 7
+      crt: 25
+      aim: 55
+      eva: 20
+    resistance: 0
+    weakness: 0
+    weapon:
+      name: CIOCCO
+      dmgType: 1
+      elem: 0
+      bonusStats:
+        atk: 3
+        def: 0
+        res: 3
+        spd: 2
+        crt: 5
+        aim: 0
+        eva: 0
 --- !u!1 &1092410507
 GameObject:
   m_ObjectHideFlags: 0
