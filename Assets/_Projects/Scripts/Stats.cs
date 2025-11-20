@@ -1,6 +1,8 @@
 using UnityEngine;
 
-[System.Serializable]
+// Classe che rappresenta le statistiche di un eroe o di un'arma
+
+[System.Serializable] // permette di vederla nell'Inspector
 public struct Stats
 {
     public int atk;
@@ -12,7 +14,7 @@ public struct Stats
     public int eva;
 
 
-    public Stats(int atk, int def, int res, int spd, int crt, int aim, int eva)
+    public Stats(int atk, int def, int res, int spd, int crt, int aim, int eva)  // Costruttore: inizializza tutte le statistiche
     {
         this.atk = atk;
         this.def = def;
@@ -23,7 +25,7 @@ public struct Stats
         this.eva = eva;
     }
 
-    public static Stats Sum(Stats a, Stats b)
+    public static Stats Sum(Stats a, Stats b) // Somma due oggetti Stats e restituisce un nuovo oggetto con la somma delle statistiche
     {
         return new Stats
         (

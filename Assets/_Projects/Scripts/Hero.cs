@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[System.Serializable]
+[System.Serializable] // permette di assegnare gli Hero nell'Inspector
 public class Hero
 {
     [SerializeField] private string name;
@@ -11,7 +11,7 @@ public class Hero
     [SerializeField] private ELEMENT weakness;
     [SerializeField] private Weapon weapon;
 
-    public Hero (string name, int hp, Stats baseStats, ELEMENT resistance, ELEMENT weakness, Weapon weapon)
+    public Hero (string name, int hp, Stats baseStats, ELEMENT resistance, ELEMENT weakness, Weapon weapon) // Costruttore: inizializza tutti i campi dell'eroe
     {
         this.name = name;
         this.hp = hp;
@@ -21,6 +21,7 @@ public class Hero
         this.weapon = weapon;
     }
 
+    // Getter e setter per i campi privati della classe Hero
     public string GetName() => name;
     public int GetHp() => hp;
     public Stats GetBaseStats() => baseStats;
@@ -35,17 +36,17 @@ public class Hero
     public void SetWeakness(ELEMENT value) => weakness = value;
     public void SetWeapon(Weapon value) => weapon = value;
 
-    public void AddHp(int amount) 
+    public void AddHp(int amount) // Aumenta gli HP di una certa quantità
     {
         SetHp(hp + amount);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) // Riduce gli HP di una certa quantità
     {
         AddHp(-damage);
     }
 
-    public bool IsAlive()
+    public bool IsAlive() // Restituisce true se l'eroe è vivo
     {
         return hp > 0;
     }
