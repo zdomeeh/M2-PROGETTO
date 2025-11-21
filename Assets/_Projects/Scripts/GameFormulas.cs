@@ -8,21 +8,21 @@ using UnityEngine;
 public static class GameFormulas
 {
     // Controlla se l'attacco ha vantaggio elementale
-    // Se l'elemento dell'attacco corrisponde alla debolezza dell'eroe difensore
+    // Se l'elemento dell'attacco corrisponde alla debolezza dell'eroe difensore e non e' "NONE"
     // allora l'attacco ha un bonus (moltiplicatore 1.5)
 
     public static bool HasElementAdvantage(ELEMENT attackElement, Hero defender)
     {
-        return attackElement == defender.GetWeakness();
+        return attackElement != ELEMENT.NONE && attackElement == defender.GetWeakness();
     }
 
     // Controlla se l'attacco ha svantaggio elementale
-    // Se l'elemento dell'attacco corrisponde alla resistenza dell'eroe difensore
+    // Se l'elemento dell'attacco corrisponde alla resistenza dell'eroe difensore e non e' "NONE"
     // allora l'attacco subisce un malus (moltiplicatore 0.5)
 
     public static bool HasElementDisadvantage(ELEMENT attackElement, Hero defender)
     {
-        return attackElement == defender.GetResistance();
+        return attackElement != ELEMENT.NONE && attackElement == defender.GetResistance();
     }
 
     // Restituisce il modificatore elementale

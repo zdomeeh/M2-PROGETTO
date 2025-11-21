@@ -25,7 +25,7 @@ public struct Stats
         this.eva = eva;
     }
 
-    public static Stats Sum(Stats a, Stats b) // Somma due oggetti Stats e restituisce un nuovo oggetto con la somma delle statistiche
+    public static Stats Sum(Stats a, Stats b) // Metodo che somma due oggetti Stats e restituisce un nuovo oggetto con la somma delle statistiche
     {
         return new Stats
         (

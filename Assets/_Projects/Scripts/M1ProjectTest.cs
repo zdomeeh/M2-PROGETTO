@@ -45,7 +45,7 @@ public class M1ProjectTest : MonoBehaviour
 
         if (speedA == speedB)
         {
-            if (Random.value < 0.5f) // In caso di parita', usa un coin flip casuale da (0 a 1), se il valore e' sotto 0.5 vince l'hero a altrimento l'hero b
+            if (Random.value < 0.5f) // In caso di parita' di speed, ho aggiunto un coin flip casuale da (0 a 1), se il valore e' sotto 0.5 vince l'hero a altrimento l'hero b
             {
                 Debug.Log("TIE-BREAK! COIN FLIP VINTO DA: " + a.GetName());
                 return a;
