@@ -1,9 +1,10 @@
 using UnityEngine;
 
 [System.Serializable] // espone i campi privati nell'Inspector
-public class Weapon 
-{ 
- public enum DAMAGE_TYPE // Tipo di danno dell'arma: fisico o magico
+public class Weapon   // Classe che rappresenta un'arma equipaggiabile da un eroe
+                     // Contiene informazioni su tipo di danno, elemento e bonus alle statistiche
+{
+    public enum DAMAGE_TYPE // Enum che rappresenta il tipo di danno dell'arma: fisico o magico
     { 
      PHYSICAL,
      MAGICAL

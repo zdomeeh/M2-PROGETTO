@@ -1,6 +1,6 @@
 using UnityEngine;
 
-// Classe che rappresenta le statistiche di un eroe o di un'arma
+// Struct che rappresenta le statistiche di un eroe o di un'arma e viene visualizzata sia dagli eroi che dalle armi
 
 [System.Serializable] // permette di vederla nell'Inspector
 public struct Stats

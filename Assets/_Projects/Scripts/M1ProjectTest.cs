@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-// Componente MonoBehaviour per testare un duello tra due Hero
+ // Script che gestisce l'intero combattimento tra due hero.
+
 public class M1ProjectTest : MonoBehaviour
 {
     [SerializeField] private Hero a; // primo eroe, assegnabile nell'Inspector
@@ -11,45 +11,62 @@ public class M1ProjectTest : MonoBehaviour
 
     void Update()
     {
-        if (!a.IsAlive() || !b.IsAlive())  // Se uno dei due è morto, non fare nulla
+        if (!a.IsAlive() || !b.IsAlive())  // Se uno dei due e' morto, non fa nulla quindi interrompe il combattimento
 
             return;
 
-        int speedA = a.GetBaseStats().spd + a.GetWeapon().GetBonusStats().spd; // Calcolo velocità totale (base + arma)
-        int speedB = b.GetBaseStats().spd + b.GetWeapon().GetBonusStats().spd; // Calcolo velocità totale (base + arma)
+        Hero firstAttacker = GetFirstAttacker(a, b); // Determino chi attacca per primo usando la funzione GetFirstAttacker, dichiarata dopo il void
 
-        if (speedA == speedB) // Coin flip in caso di pareggio di velocità
+
+        Hero secondAttacker; // Determino chi attacca per secondo
+        
+        if (firstAttacker == a) // Ciclo if/else che controlla chi attacca per primo e per secondo
         {
-            if (Random.value < 0.5f)
-            {
-                speedA++;
-                Debug.Log("TIE-BREAK! COIN FLIP VINTO DA: " + a.GetName());
-            }
-            else
-            {
-                speedB++;
-                Debug.Log("TIE BREAK  COIN FLIP VINTO DA: " + b.GetName());
-            }
+            secondAttacker = b;
         }
-
-        if (speedA > speedB) // Chi attacca per primo
-        {
-            Attack(a, b);
-
-            if (b.IsAlive()) // secondo attacca solo se vivo
-
-                Attack(b, a);
-        }
-
         else
         {
-            Attack(b, a); // Questo else indica l'opposto del primo if ovvero se speedA < speedB
-
-            if (a.IsAlive()) // secondo attacca solo se vivo
-
-                Attack(a, b);
+            secondAttacker = a;
         }
+
+        Attack(firstAttacker, secondAttacker); // Attraverso la funzione Attack, dichiarata in seguito, esegue il primo attacco in se tra i due eroi
+                                               // attaccando per primo chi ha velocita' piu' alta
+
+        if (secondAttacker.IsAlive())         // Il secondo tramite questo if attacca solamente se rimane vivo
+            
+            Attack(secondAttacker, firstAttacker);
         
+    }
+
+    private Hero GetFirstAttacker(Hero a, Hero b)
+    {
+        int speedA = a.GetTotalStats().spd; // Mi trovo la speed totale (base + bonus arma) del primo hero tramite la funzione GetTotalStats
+        int speedB = b.GetTotalStats().spd; // Mi trovo la speed totale (base + bonus arma) del secondo hero tramite la funzione GetTotalStats
+
+        if (speedA == speedB)
+        {
+            if (Random.value < 0.5f) // In caso di parita', usa un coin flip casuale da (0 a 1), se il valore e' sotto 0.5 vince l'hero a altrimento l'hero b
+            {
+                Debug.Log("TIE-BREAK! COIN FLIP VINTO DA: " + a.GetName());
+                return a;
+            }
+
+            else
+            {
+                Debug.Log("TIE-BREAK! COIN FLIP VINTO DA: " + b.GetName());
+                return b; 
+            }
+                
+        }
+
+        if (speedA > speedB)  // Utilizza if/else per determinare il primo attaccante in base alla velocita' totale restituendo l'hero con velocita' maggiore
+        {
+            return a;
+        }
+        else
+        {
+            return b;
+        }
     }
 
     // Funzione che gestisce un attacco completo per evitare di duplicare e allungare codice 
@@ -57,12 +74,12 @@ public class M1ProjectTest : MonoBehaviour
     {
         Debug.Log(attacker.GetName() + " ATTACCA " + defender.GetName());
          
-        if (!GameFormulas.HasHit(attacker.GetBaseStats(), defender.GetBaseStats())) // Controllo se colpisce
+        if (!GameFormulas.HasHit(attacker.GetTotalStats(), defender.GetTotalStats())) // Controllo se colpisce
         {
             return;
         }
 
-        ELEMENT atkElement = attacker.GetWeapon().GetElement();
+        ELEMENT atkElement = attacker.GetWeapon().GetElement();  // Gestisce la parte su vantaggio/svantaggio elementale e la restituisce in console
 
         if (GameFormulas.HasElementAdvantage(atkElement, defender))
             Debug.Log("WEAKNESS!");
@@ -70,12 +87,12 @@ public class M1ProjectTest : MonoBehaviour
         else if (GameFormulas.HasElementDisadvantage(atkElement, defender))
             Debug.Log("RESIST!");
 
-        int damage = GameFormulas.CalculateDamage(attacker, defender); // Calcolo danno
+        int damage = GameFormulas.CalculateDamage(attacker, defender); // Calcolo del danno
         Debug.Log("IL DANNO E' DI: " + damage);
 
-        defender.TakeDamage(damage);
+        defender.TakeDamage(damage); // Viene applicato il danno
 
-        if (!defender.IsAlive()) // Se difensore morto, stampa vincitore
+        if (!defender.IsAlive()) // Se difensore morto, stampa vincitore e lo sconfitto
         {
             Debug.Log(defender.GetName() + " E' STATO SCONFITTO!!");
             Debug.Log(attacker.GetName() + " E' IL VINCITORE DEL MATCH!!");
