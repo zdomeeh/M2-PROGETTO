@@ -15,7 +15,7 @@ public class Weapon   // Classe che rappresenta un'arma equipaggiabile da un ero
    [SerializeField] private ELEMENT elem;
    [SerializeField] private Stats bonusStats;
 
- public Weapon (string name, DAMAGE_TYPE dmgType, ELEMENT elem, Stats bonusStats) // Costruttore: assegna tutti i valori dell'arma
+ public Weapon (string name, DAMAGE_TYPE dmgType, ELEMENT elem, Stats bonusStats) // Costruttore: consente di creare un'arma, impostando tutti i valori dall'inspector
     {
         this.name = name;
         this.dmgType = dmgType;

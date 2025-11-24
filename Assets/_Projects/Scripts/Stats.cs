@@ -5,16 +5,16 @@ using UnityEngine;
 [System.Serializable] // permette di vederla nell'Inspector
 public struct Stats
 {
-    public int atk;
-    public int def;
-    public int res;
-    public int spd;
+    public int atk; 
+    public int def; 
+    public int res; 
+    public int spd; 
     public int crt;
     public int aim;
     public int eva;
 
 
-    public Stats(int atk, int def, int res, int spd, int crt, int aim, int eva)  // Costruttore: inizializza tutte le statistiche
+    public Stats(int atk, int def, int res, int spd, int crt, int aim, int eva)  // Costruttore: inizializza tutte le statistiche alla creazione della struct
     {
         this.atk = atk;
         this.def = def;
@@ -25,8 +25,10 @@ public struct Stats
         this.eva = eva;
     }
 
-    public static Stats Sum(Stats a, Stats b) // Metodo che somma due oggetti Stats e restituisce un nuovo oggetto con la somma delle statistiche
-    {
+    // Metodo che somma due oggetti Stats e restituisce un nuovo oggetto con la somma delle statistiche
+    // questo metodo viene usato per combinare le statistiche dell'eroe con quelle aggiunte dall’arma equipaggiata.
+    public static Stats Sum(Stats a, Stats b) 
+    {                                           
         return new Stats
         (
         a.atk + b.atk,

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
- // Script che gestisce l'intero combattimento tra due hero.
+ // Script che gestisce l'intero combattimento tra due hero
 
 public class M1ProjectTest : MonoBehaviour
 {
@@ -45,7 +45,7 @@ public class M1ProjectTest : MonoBehaviour
 
         if (speedA == speedB)
         {
-            if (Random.value < 0.5f) // In caso di parita' di speed, ho aggiunto un coin flip casuale da (0 a 1), se il valore e' sotto 0.5 vince l'hero a altrimento l'hero b
+            if (Random.value < 0.5f) // In caso di parita' di speed, ho aggiunto un coin flip casuale da (0 a 1), se il valore e' sotto 0.5 vince l'hero A altrimento l'hero B
             {
                 Debug.Log("TIE-BREAK! COIN FLIP VINTO DA: " + a.GetName());
                 return a;
